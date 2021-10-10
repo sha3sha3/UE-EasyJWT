@@ -19,7 +19,7 @@ public:
 	void withSubject(FString subject);
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "With Audience", Keywords = "JWT"), Category = "JWT")//aud
 	void withAudience(FString audience);
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "With Leeway", Keywords = "JWT"), Category = "JWT")
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "With Default Leeway", Keywords = "JWT"), Category = "JWT")
 	void setLeeway(int32 leeway);
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Expire At", Keywords = "JWT"), Category = "JWT")//exp
 	void expireAt(int32 leeway);
