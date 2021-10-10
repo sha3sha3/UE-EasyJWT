@@ -34,3 +34,11 @@ UJWTVerifier* UJWTPluginBPLibrary::CreateVerifier(FString key, Algorithm algorit
 	return jwtVerifier;
 }
 
+UJWTGenerator* UJWTPluginBPLibrary::CreateGenerator()
+{
+
+	UJWTGenerator* jwtGenerator = NewObject<UJWTGenerator>();
+
+	return jwtGenerator;
+}
+

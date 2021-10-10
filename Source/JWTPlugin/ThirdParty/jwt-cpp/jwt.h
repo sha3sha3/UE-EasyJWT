@@ -2388,7 +2388,7 @@ namespace jwt {
 	 * Use jwt::create() to get an instance of this class.
 	 */
 	template<typename json_traits>
-	class builder {
+	class builder  {
 		typename json_traits::object_type header_claims;
 		typename json_traits::object_type payload_claims;
 

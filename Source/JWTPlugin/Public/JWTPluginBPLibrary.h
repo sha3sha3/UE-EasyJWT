@@ -4,6 +4,7 @@
 #include "jwt.h"
 #include "Helper.h"
 #include "JWTVerifier.h"
+#include "JWTGenerator.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "JWTPluginBPLibrary.generated.h"
 
@@ -15,8 +16,9 @@ class UJWTPluginBPLibrary : public UBlueprintFunctionLibrary
 
 		UFUNCTION(BlueprintCallable, meta = (DisplayName = "Get Claims", Keywords = "JWT"), Category = "JWT")
 		static TMap<FString, FString> GetClaims(const FString JWTToken);
-		UFUNCTION(BlueprintCallable, meta = (DisplayName = "Create Verifier", Keywords = "JWT"), Category = "JWT")
+		UFUNCTION(BlueprintCallable, meta = (DisplayName = "Create JWT Verifier", Keywords = "JWT"), Category = "JWT")
 		static UJWTVerifier* CreateVerifier(FString key, Algorithm algorithm);
-		
+		UFUNCTION(BlueprintCallable, meta = (DisplayName = "Create JWT Generator", Keywords = "JWT"), Category = "JWT")
+		static UJWTGenerator* CreateGenerator();
 
 };
