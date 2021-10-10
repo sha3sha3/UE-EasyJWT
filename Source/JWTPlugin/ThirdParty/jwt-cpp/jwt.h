@@ -323,8 +323,9 @@ namespace jwt {
 			return {static_cast<int>(e), token_verification_error_category()};
 		}
 
-		inline void throw_if_error(std::error_code ec) {
+		inline bool throw_if_error(std::error_code ec) {
 			if (ec) {
+				return false;
 				if (ec.category() == rsa_error_category()) throw rsa_exception(ec);
 				if (ec.category() == ecdsa_error_category()) throw ecdsa_exception(ec);
 				if (ec.category() == signature_verification_error_category())
@@ -332,6 +333,7 @@ namespace jwt {
 				if (ec.category() == signature_generation_error_category()) throw signature_generation_exception(ec);
 				if (ec.category() == token_verification_error_category()) throw token_verification_exception(ec);
 			}
+			return true;
 		}
 	} // namespace error
 
@@ -881,48 +883,51 @@ namespace jwt {
 			ecdsa(const std::string& public_key, const std::string& private_key, const std::string& public_key_password,
 				  const std::string& private_key_password, const EVP_MD* (*md)(), std::string name, size_t siglen)
 				: md(md), alg_name(std::move(name)), signature_length(siglen) {
-				if (!public_key.empty()) {
-					std::unique_ptr<BIO, decltype(&BIO_free_all)> pubkey_bio(BIO_new(BIO_s_mem()), BIO_free_all);
-					if (!pubkey_bio) throw ecdsa_exception(error::ecdsa_error::create_mem_bio_failed);
-					if (public_key.substr(0, 27) == "-----BEGIN CERTIFICATE-----") {
-						auto epkey = helper::extract_pubkey_from_cert(public_key, public_key_password);
-						const int len = static_cast<int>(epkey.size());
-						if (BIO_write(pubkey_bio.get(), epkey.data(), len) != len)
-							throw ecdsa_exception(error::ecdsa_error::load_key_bio_write);
-					} else {
-						const int len = static_cast<int>(public_key.size());
-						if (BIO_write(pubkey_bio.get(), public_key.data(), len) != len)
-							throw ecdsa_exception(error::ecdsa_error::load_key_bio_write);
+				try {
+					if (!public_key.empty()) {
+						std::unique_ptr<BIO, decltype(&BIO_free_all)> pubkey_bio(BIO_new(BIO_s_mem()), BIO_free_all);
+						if (!pubkey_bio) throw ecdsa_exception(error::ecdsa_error::create_mem_bio_failed);
+						if (public_key.substr(0, 27) == "-----BEGIN CERTIFICATE-----") {
+							auto epkey = helper::extract_pubkey_from_cert(public_key, public_key_password);
+							const int len = static_cast<int>(epkey.size());
+							if (BIO_write(pubkey_bio.get(), epkey.data(), len) != len)
+								throw ecdsa_exception(error::ecdsa_error::load_key_bio_write);
+						}
+						else {
+							const int len = static_cast<int>(public_key.size());
+							if (BIO_write(pubkey_bio.get(), public_key.data(), len) != len)
+								throw ecdsa_exception(error::ecdsa_error::load_key_bio_write);
+						}
+
+						pkey.reset(PEM_read_bio_EC_PUBKEY(
+							pubkey_bio.get(), nullptr, nullptr,
+							(void*)public_key_password
+							.c_str()), // NOLINT(google-readability-casting) requires `const_cast`
+							EC_KEY_free);
+						if (!pkey) throw ecdsa_exception(error::ecdsa_error::load_key_bio_read);
+						size_t keysize = EC_GROUP_get_degree(EC_KEY_get0_group(pkey.get()));
+						if (keysize != signature_length * 4 && (signature_length != 132 || keysize != 521))
+							throw ecdsa_exception(error::ecdsa_error::invalid_key_size);
 					}
 
-					pkey.reset(PEM_read_bio_EC_PUBKEY(
-								   pubkey_bio.get(), nullptr, nullptr,
-								   (void*)public_key_password
-									   .c_str()), // NOLINT(google-readability-casting) requires `const_cast`
-							   EC_KEY_free);
-					if (!pkey) throw ecdsa_exception(error::ecdsa_error::load_key_bio_read);
-					size_t keysize = EC_GROUP_get_degree(EC_KEY_get0_group(pkey.get()));
-					if (keysize != signature_length * 4 && (signature_length != 132 || keysize != 521))
-						throw ecdsa_exception(error::ecdsa_error::invalid_key_size);
-				}
+					if (!private_key.empty()) {
+						std::unique_ptr<BIO, decltype(&BIO_free_all)> privkey_bio(BIO_new(BIO_s_mem()), BIO_free_all);
+						if (!privkey_bio) throw ecdsa_exception(error::ecdsa_error::create_mem_bio_failed);
+						const int len = static_cast<int>(private_key.size());
+						if (BIO_write(privkey_bio.get(), private_key.data(), len) != len)
+							throw ecdsa_exception(error::ecdsa_error::load_key_bio_write);
+						pkey.reset(PEM_read_bio_ECPrivateKey(privkey_bio.get(), nullptr, nullptr,
+							const_cast<char*>(private_key_password.c_str())),
+							EC_KEY_free);
+						if (!pkey) throw ecdsa_exception(error::ecdsa_error::load_key_bio_read);
+						size_t keysize = EC_GROUP_get_degree(EC_KEY_get0_group(pkey.get()));
+						if (keysize != signature_length * 4 && (signature_length != 132 || keysize != 521))
+							throw ecdsa_exception(error::ecdsa_error::invalid_key_size);
+					}
+					if (!pkey) throw ecdsa_exception(error::ecdsa_error::no_key_provided);
 
-				if (!private_key.empty()) {
-					std::unique_ptr<BIO, decltype(&BIO_free_all)> privkey_bio(BIO_new(BIO_s_mem()), BIO_free_all);
-					if (!privkey_bio) throw ecdsa_exception(error::ecdsa_error::create_mem_bio_failed);
-					const int len = static_cast<int>(private_key.size());
-					if (BIO_write(privkey_bio.get(), private_key.data(), len) != len)
-						throw ecdsa_exception(error::ecdsa_error::load_key_bio_write);
-					pkey.reset(PEM_read_bio_ECPrivateKey(privkey_bio.get(), nullptr, nullptr,
-														 const_cast<char*>(private_key_password.c_str())),
-							   EC_KEY_free);
-					if (!pkey) throw ecdsa_exception(error::ecdsa_error::load_key_bio_read);
-					size_t keysize = EC_GROUP_get_degree(EC_KEY_get0_group(pkey.get()));
-					if (keysize != signature_length * 4 && (signature_length != 132 || keysize != 521))
-						throw ecdsa_exception(error::ecdsa_error::invalid_key_size);
-				}
-				if (!pkey) throw ecdsa_exception(error::ecdsa_error::no_key_provided);
-
-				if (EC_KEY_check_key(pkey.get()) == 0) throw ecdsa_exception(error::ecdsa_error::invalid_key);
+					if (EC_KEY_check_key(pkey.get()) == 0) throw ecdsa_exception(error::ecdsa_error::invalid_key);
+				}catch(...) {}
 			}
 			/**
 			 * Sign jwt data
@@ -2758,10 +2763,16 @@ namespace jwt {
 		 * \param jwt Token to check
 		 * \throw token_verification_exception Verification failed
 		 */
-		void verify(const decoded_jwt<json_traits>& jwt) const {
+		bool verify(const decoded_jwt<json_traits>& jwt) const {
 			std::error_code ec;
-			verify(jwt, ec);
-			error::throw_if_error(ec);
+			try {
+				verify(jwt, ec);
+			}
+			catch (...) { return false; }
+			if (ec)
+				return false;
+			return true;
+			//error::throw_if_error(ec);
 		}
 		/**
 		 * Verify the given token.
