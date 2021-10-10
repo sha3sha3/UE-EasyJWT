@@ -45,3 +45,13 @@ void UJWTGenerator::setAudience(FString audience) {
 void UJWTGenerator::setID(FString ID) {
 	jwtGenerator = jwtGenerator.set_id(TCHAR_TO_ANSI(*ID));
 }
+
+void UJWTGenerator::addClaim(FString Name,FString Value) {
+	jwtGenerator = jwtGenerator.set_payload_claim(TCHAR_TO_ANSI(*Name), jwt::claim(std::string(TCHAR_TO_ANSI(*Value))));
+}
+void UJWTGenerator::addClaims(TMap<FString, FString> Claims) {
+	for (const TPair<FString, FString>& pair : Claims)
+	{
+		UJWTGenerator::addClaim(pair.Key, pair.Value);
+	}
+}
