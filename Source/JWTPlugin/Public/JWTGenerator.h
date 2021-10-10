@@ -31,7 +31,11 @@ public:
 	void addHeaderClaim(FString Name, FString Value);
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Add Header Claims", Keywords = "JWT"), Category = "JWT")
 	void addHeaderClaims(TMap<FString, FString> Claims);
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Set Not Before", Keywords = "JWT"), Category = "JWT")//nbf
+	void setNotBefore(int32 seconds);
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Expire At", Keywords = "JWT"), Category = "JWT")//exp
+	void expireAt(int32 seconds);
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Generate Signed JWT", Keywords = "JWT"), Category = "JWT")
-	void generateToken(FString key, Algorithm algorithm, FString& JWT);
+	void generateToken(FString key, Algorithm algorithm,bool IATClaim, FString& JWT);
 	jwt::builder<jwt::picojson_traits> jwtGenerator = jwt::create();
 };
