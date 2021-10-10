@@ -22,7 +22,7 @@ THIRD_PARTY_INCLUDES_START
 THIRD_PARTY_INCLUDES_END
 #undef UI
 #ifdef verify
-#undef verify
+#undef verify//assertion macros in ue4
 #endif
 
 

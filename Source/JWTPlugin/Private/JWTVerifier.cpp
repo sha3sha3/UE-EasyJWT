@@ -49,15 +49,6 @@ void UJWTVerifier::withSubject(FString subject) {
 	verifier = verifier.with_subject(TCHAR_TO_ANSI(*subject));
 }
 
-void UJWTVerifier::expireAt(int32 leeway) {
-	verifier = verifier.expires_at_leeway(leeway);
-}
-void UJWTVerifier::notBefore(int32 leeway) {
-	verifier = verifier.not_before_leeway(leeway);
-}
-void UJWTVerifier::issuedAt(int32 leeway) {
-	verifier = verifier.issued_at_leeway(leeway);
-}
 void UJWTVerifier::withID(FString ID) {
 	verifier = verifier.with_id(TCHAR_TO_ANSI(*ID));
 }

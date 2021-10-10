@@ -19,14 +19,8 @@ public:
 	void withSubject(FString subject);
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "With Audience", Keywords = "JWT"), Category = "JWT")//aud
 	void withAudience(FString audience);
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "With Default Leeway", Keywords = "JWT"), Category = "JWT")
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "With Leeway", Keywords = "JWT"), Category = "JWT")
 	void setLeeway(int32 leeway);
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Expire At", Keywords = "JWT"), Category = "JWT")//exp
-	void expireAt(int32 leeway);
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Not Before", Keywords = "JWT"), Category = "JWT")//nbf
-	void notBefore(int32 leeway);
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Issued At", Keywords = "JWT"), Category = "JWT")//iat
-	void issuedAt(int32 leeway);
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "With ID", Keywords = "JWT"), Category = "JWT")//jti
 	void withID(FString ID);
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "With Custom Claim", Keywords = "JWT"), Category = "JWT")
