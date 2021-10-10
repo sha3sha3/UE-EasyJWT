@@ -24,6 +24,6 @@ public:
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Set ID", Keywords = "JWT"), Category = "JWT")//jti
 	void setID(FString ID);
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Generate Signed JWT", Keywords = "JWT"), Category = "JWT")
-	void generateToken(FString key, Algorithm algorithm, UPARAM(ref) FString& JWT);
+	void generateToken(FString key, Algorithm algorithm, FString& JWT);
 	jwt::builder<jwt::picojson_traits> jwtGenerator = jwt::create();
 };
