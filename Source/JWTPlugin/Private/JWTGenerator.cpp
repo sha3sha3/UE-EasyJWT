@@ -49,9 +49,21 @@ void UJWTGenerator::setID(FString ID) {
 void UJWTGenerator::addClaim(FString Name,FString Value) {
 	jwtGenerator = jwtGenerator.set_payload_claim(TCHAR_TO_ANSI(*Name), jwt::claim(std::string(TCHAR_TO_ANSI(*Value))));
 }
+
 void UJWTGenerator::addClaims(TMap<FString, FString> Claims) {
 	for (const TPair<FString, FString>& pair : Claims)
 	{
 		UJWTGenerator::addClaim(pair.Key, pair.Value);
+	}
+}
+
+void UJWTGenerator::addHeaderClaim(FString Name, FString Value) {
+	jwtGenerator = jwtGenerator.set_header_claim(TCHAR_TO_ANSI(*Name), jwt::claim(std::string(TCHAR_TO_ANSI(*Value))));
+}
+
+void UJWTGenerator::addHeaderClaims(TMap<FString, FString> Claims) {
+	for (const TPair<FString, FString>& pair : Claims)
+	{
+		UJWTGenerator::addHeaderClaim(pair.Key, pair.Value);
 	}
 }
