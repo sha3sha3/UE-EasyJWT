@@ -5,11 +5,7 @@
 UENUM(BlueprintType)
 enum class Algorithm : uint8
 {
-	hmacsha  UMETA(DisplayName = "HMACSHA"),
-	rsa      UMETA(DisplayName = "RSA"),
 	ecdsa UMETA(DisplayName = "ECDSA"),
-	eddsa UMETA(DisplayName = "EDDSA"),
-	pss UMETA(DisplayName = "PSS"),
 	hs256 UMETA(DisplayName = "HS256"),
 	hs384 UMETA(DisplayName = "HS348"),
 	hs512 UMETA(DisplayName = "HS512"),

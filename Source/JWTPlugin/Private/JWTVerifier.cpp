@@ -6,21 +6,17 @@ void UJWTVerifier::setAlgorithm(FString key, Algorithm algorithm) {
 	case Algorithm::hs256:verifier = verifier.allow_algorithm(jwt::algorithm::hs256{ TCHAR_TO_ANSI(*key) }); break;
 	case Algorithm::ed25519:verifier = verifier.allow_algorithm(jwt::algorithm::ed25519{ TCHAR_TO_ANSI(*key) }); break;
 	case Algorithm::ed448:verifier = verifier.allow_algorithm(jwt::algorithm::ed448{ TCHAR_TO_ANSI(*key) }); break;
-//	case Algorithm::eddsa:verifier = verifier.allow_algorithm(jwt::algorithm::eddsa{ TCHAR_TO_ANSI(*key) }); break;
 	case Algorithm::es256:verifier = verifier.allow_algorithm(jwt::algorithm::es256{ TCHAR_TO_ANSI(*key) }); break;
 	case Algorithm::es384:verifier = verifier.allow_algorithm(jwt::algorithm::es384{ TCHAR_TO_ANSI(*key) }); break;
 	case Algorithm::es512:verifier = verifier.allow_algorithm(jwt::algorithm::es512{ TCHAR_TO_ANSI(*key) }); break;
-//	case Algorithm::hmacsha:verifier = verifier.allow_algorithm(jwt::algorithm::hmacsha{ TCHAR_TO_ANSI(*key) }); break;
 	case Algorithm::hs384:verifier = verifier.allow_algorithm(jwt::algorithm::hs384{ TCHAR_TO_ANSI(*key) }); break;
 	case Algorithm::hs512:verifier = verifier.allow_algorithm(jwt::algorithm::hs256{ TCHAR_TO_ANSI(*key) }); break;
 	case Algorithm::ps256:verifier = verifier.allow_algorithm(jwt::algorithm::hs512{ TCHAR_TO_ANSI(*key) }); break;
 	case Algorithm::ps384:verifier = verifier.allow_algorithm(jwt::algorithm::ps384{ TCHAR_TO_ANSI(*key) }); break;
 	case Algorithm::ps512:verifier = verifier.allow_algorithm(jwt::algorithm::ps512{ TCHAR_TO_ANSI(*key) }); break;
-//	case Algorithm::pss:verifier = verifier.allow_algorithm(jwt::algorithm::pss{ TCHAR_TO_ANSI(*key) }); break;
 	case Algorithm::rs256:verifier = verifier.allow_algorithm(jwt::algorithm::rs256{ TCHAR_TO_ANSI(*key) }); break;
 	case Algorithm::rs384:verifier = verifier.allow_algorithm(jwt::algorithm::rs384{ TCHAR_TO_ANSI(*key) }); break;
 	case Algorithm::rs512:verifier = verifier.allow_algorithm(jwt::algorithm::rs512{ TCHAR_TO_ANSI(*key) }); break;
-//	case Algorithm::rsa:verifier = verifier.allow_algorithm(jwt::algorithm::rsa{ TCHAR_TO_ANSI(*key) }); break;
 	}	
 }
 
