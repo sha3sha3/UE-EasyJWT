@@ -19,3 +19,7 @@ void UJWTGenerator::setSubject(FString subject) {
 void UJWTGenerator::setAudience(FString audience) {
 	jwtGenerator = jwtGenerator.set_audience(TCHAR_TO_ANSI(*audience));
 }
+
+void UJWTGenerator::setID(FString ID) {
+	jwtGenerator = jwtGenerator.set_id(TCHAR_TO_ANSI(*ID));
+}

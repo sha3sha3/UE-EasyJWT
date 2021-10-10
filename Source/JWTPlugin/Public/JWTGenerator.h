@@ -21,5 +21,7 @@ public:
 	void setSubject(FString Subject);
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Set Audience", Keywords = "JWT"), Category = "JWT")//aud
 	void setAudience(FString Audience);
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Set ID", Keywords = "JWT"), Category = "JWT")//jti
+	void setID(FString ID);
 	jwt::builder<jwt::picojson_traits> jwtGenerator = jwt::create();
 };
