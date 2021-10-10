@@ -3,7 +3,7 @@
 	"Version": 1,
 	"VersionName": "1.0",
 	"FriendlyName": "JWTPlugin",
-	"Description": "Simple and easy to use BP library to creat,verify and extract claims from JSON WEB TOKENS",
+	"Description": "Simple and easy to use BP library to creat, verify & extract claims from JSON WEB TOKENS",
 	"Category": "Other",
 	"CreatedBy": "FFE (ForeFront Electronic)",
 	"CreatedByURL": "https://www.youtube.com/channel/UCFqsG_gNXKbujdm2XB90wOQ",
