@@ -6,7 +6,7 @@
 
 JWT Plugin provide a c++ and Blueprint support of JWT for UE4, You can easily:
 ```
-1. Generat JWT Token
+1. Generate JWT Token
 2. Verify JWT Token
 3. Extract JWT Token Claims
 ```
