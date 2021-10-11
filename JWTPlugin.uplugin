@@ -18,7 +18,11 @@
 		{
 			"Name": "JWTPlugin",
 			"Type": "Runtime",
-			"LoadingPhase": "PreLoadingScreen"
+			"LoadingPhase": "PreLoadingScreen",
+			"WhitelistPlatforms": [
+				"Win64",
+				"Linux"
+			]
 		}
 	]
 }
