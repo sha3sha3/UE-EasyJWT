@@ -5,7 +5,7 @@
 	"FriendlyName": "JWTPlugin",
 	"Description": "Simple and easy to use BP library to creat, verify & extract claims from JSON WEB TOKENS",
 	"Category": "Other",
-	"CreatedBy": "FFE (ForeFront Electronic)",
+	"CreatedBy": "FFE (ForeFront Electronics)",
 	"CreatedByURL": "https://www.youtube.com/channel/UCFqsG_gNXKbujdm2XB90wOQ",
 	"DocsURL": "https://github.com/sha3sha3/JWTPlugin/blob/master/README.md",
 	"MarketplaceURL": "",

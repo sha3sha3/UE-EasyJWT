@@ -1,3 +1,4 @@
+//ForeFront electronics 2021
 #include "JWTVerifier.h"
 
 void UJWTVerifier::setAlgorithm(FString key, Algorithm algorithm) {
