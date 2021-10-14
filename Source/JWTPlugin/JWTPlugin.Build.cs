@@ -1,4 +1,4 @@
-// Some copyright should be here...
+//ForeFront electronics 2021
 
 using UnrealBuildTool;
 using System.IO;
