@@ -1,6 +1,6 @@
 # Supported Platforms
 
-![Windows](https://drive.google.com/uc?export=view&id=1k4dinqYcmrCpQ6b08JMJujBICzzTJOeo) 
+![Windows](https://drive.google.com/uc?export=view&id=1k4dinqYcmrCpQ6b08JMJujBICzzTJOeo) ![Linux](https://drive.google.com/uc?export=view&id=1QwyMFHBC9qPJatMq7eUqh7m15mOkR1Hn) 
 
 # Features
 
