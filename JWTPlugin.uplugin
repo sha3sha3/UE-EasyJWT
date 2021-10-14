@@ -13,7 +13,8 @@
 	"CanContainContent": true,
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
-	"Installed": false,
+	"EngineVersion": "4.24.0",
+	"Installed": true,
 	"Modules": [
 		{
 			"Name": "JWTPlugin",

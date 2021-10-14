@@ -25,12 +25,13 @@ bool UJWTVerifier::verifyJWT(FString jwt) {
 
 	try {
 		
-		return verifier.verify(jwt::decode(TCHAR_TO_ANSI(*jwt)));
+		 verifier.verify(jwt::decode(TCHAR_TO_ANSI(*jwt)));
 	}
 	catch (const std::exception& ec) {
 		UE_LOG(LogTemp, Error,TEXT("Error:  %d"),*ec.what());
 		return false;
 	}
+	return true;
 	/*Not a good idea o use try and catch but looking for a solution*/
 	
 }

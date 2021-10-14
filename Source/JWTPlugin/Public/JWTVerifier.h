@@ -4,8 +4,11 @@
 #include "jwt.h"
 #include "Helper.h"
 #include "CoreMinimal.h"
-#include "UObject/NoExportTypes.h"
 #include "JWTVerifier.generated.h"
+
+#ifdef verify
+#undef verify//assertion macros in ue4
+#endif
 
 UCLASS(BlueprintType)
 class JWTPLUGIN_API UJWTVerifier : public UObject
@@ -28,5 +31,6 @@ public:
 	void withCustomClaim(FString Name,FString Value);
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Verify JWT", Keywords = "JWT"), Category = "JWT")
 	bool verifyJWT(FString JWT);
+private:
     jwt::verifier<jwt::default_clock,jwt::picojson_traits> verifier=jwt::verify();
 };

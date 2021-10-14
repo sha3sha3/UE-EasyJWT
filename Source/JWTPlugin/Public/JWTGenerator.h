@@ -1,10 +1,8 @@
 //ForeFront electronics 2021
 #pragma once
-#include "UObject/NoExportTypes.h"
 #include "jwt.h"
 #include "Helper.h"
 #include "CoreMinimal.h"
-#include "UObject/NoExportTypes.h"
 #include "JWTGenerator.generated.h"
 
 UCLASS(BlueprintType)
@@ -38,5 +36,6 @@ public:
 	void expireAt(int32 seconds);
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Generate Signed JWT", Keywords = "JWT"), Category = "JWT")
 	void generateToken(FString key, Algorithm algorithm,bool IATClaim, FString& JWT);
+private:
 	jwt::builder<jwt::picojson_traits> jwtGenerator = jwt::create();
 };

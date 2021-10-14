@@ -28,12 +28,8 @@ public class JWTPlugin : ModuleRules
 		PublicDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"Core",
-				"CoreUObject",
-				"Engine",
-				"Slate",
-				"SlateCore",
-				"OpenSSL"
+				"Core"
+				
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
@@ -42,7 +38,11 @@ public class JWTPlugin : ModuleRules
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
 			{
-				
+				"CoreUObject",
+				"Engine",
+				"Slate",
+				"SlateCore",
+				"OpenSSL"
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);

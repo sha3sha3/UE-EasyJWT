@@ -13,13 +13,11 @@
 #endif
 
 #define UI UI_ST
-THIRD_PARTY_INCLUDES_START
 #include <openssl/evp.h>
 #include <openssl/hmac.h>
 #include <openssl/pem.h>
 #include <openssl/ec.h>
 #include <openssl/err.h>
-THIRD_PARTY_INCLUDES_END
 #undef UI
 #ifdef verify
 #undef verify//assertion macros in ue4
@@ -2763,16 +2761,10 @@ namespace jwt {
 		 * \param jwt Token to check
 		 * \throw token_verification_exception Verification failed
 		 */
-		bool verify(const decoded_jwt<json_traits>& jwt) const {
+		void verify(const decoded_jwt<json_traits>& jwt) const {
 			std::error_code ec;
-			try {
-				verify(jwt, ec);
-			}
-			catch (...) { return false; }
-			if (ec)
-				return false;
-			return true;
-			//error::throw_if_error(ec);
+			verify(jwt, ec);
+			error::throw_if_error(ec);
 		}
 		/**
 		 * Verify the given token.
