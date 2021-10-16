@@ -13,7 +13,7 @@
 	"CanContainContent": true,
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
-	"EngineVersion": "4.24.0",
+	"EngineVersion": "4.27.0",
 	"Installed": true,
 	"Modules": [
 		{

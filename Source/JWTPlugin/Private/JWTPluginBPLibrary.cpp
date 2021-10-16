@@ -19,7 +19,8 @@ TMap<FString, FString> UJWTPluginBPLibrary::GetClaims(const FString JWTToken)
 
 		for (auto& Item : decoded.get_payload_claims())
 		{
-			claims.Add(Item.first.c_str(), Item.second.to_json().serialize().c_str());
+			FString value = Item.second.to_json().serialize().c_str();
+			claims.Add(Item.first.c_str(), value.TrimQuotes());
 		}
 	}
 	catch (...) {}
