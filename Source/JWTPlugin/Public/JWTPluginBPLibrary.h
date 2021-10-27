@@ -14,11 +14,13 @@ class UJWTPluginBPLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_UCLASS_BODY()
 
-		UFUNCTION(BlueprintCallable, meta = (DisplayName = "Get Claims", Keywords = "JWT"), Category = "JWT")
-		static TMap<FString, FString> GetClaims(const FString JWTToken);
-		UFUNCTION(BlueprintCallable, meta = (DisplayName = "Create JWT Verifier", Keywords = "JWT"), Category = "JWT")
-		static UJWTVerifier* CreateVerifier(FString key, Algorithm algorithm);
-		UFUNCTION(BlueprintCallable, meta = (DisplayName = "Create JWT Generator", Keywords = "JWT"), Category = "JWT")
-		static UJWTGenerator* CreateGenerator();
+public:
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Get Claims", Keywords = "JWT"), Category = "JWT")
+	static TMap<FString, FString> GetClaims(const FString& JWTToken);
 
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Create JWT Verifier", Keywords = "JWT"), Category = "JWT")
+	static UJWTVerifier* CreateVerifier(const FString& Key, EAlgorithm Algorithm);
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Create JWT Generator", Keywords = "JWT"), Category = "JWT")
+	static UJWTGenerator* CreateGenerator();
 };
