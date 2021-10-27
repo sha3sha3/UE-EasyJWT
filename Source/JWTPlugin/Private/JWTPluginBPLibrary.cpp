@@ -9,7 +9,7 @@ UJWTPluginBPLibrary::UJWTPluginBPLibrary(const FObjectInitializer& ObjectInitial
 
 }
 
-TMap<FString, FString> UJWTPluginBPLibrary::GetClaims(const FString JWTToken)
+TMap<FString, FString> UJWTPluginBPLibrary::GetClaims(const FString& JWTToken)
 {
 	TMap<FString, FString> claims;
 	if (JWTToken.IsEmpty()) 
@@ -26,11 +26,10 @@ TMap<FString, FString> UJWTPluginBPLibrary::GetClaims(const FString JWTToken)
 	catch (...) {}
 	return claims;
 }
-UJWTVerifier* UJWTPluginBPLibrary::CreateVerifier(FString key, Algorithm algorithm)
+UJWTVerifier* UJWTPluginBPLibrary::CreateVerifier(const FString& Key, EAlgorithm Algorithm)
 {
-
 	UJWTVerifier* jwtVerifier = NewObject<UJWTVerifier>();
-	jwtVerifier->setAlgorithm(key, algorithm);
+	jwtVerifier->SetAlgorithm(Key, Algorithm);
 
 	return jwtVerifier;
 }

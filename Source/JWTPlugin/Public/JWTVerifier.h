@@ -14,23 +14,31 @@ UCLASS(BlueprintType)
 class JWTPLUGIN_API UJWTVerifier : public UObject
 {
 	GENERATED_BODY()
+	
 public:
-
-	void setAlgorithm(FString key,Algorithm algorithm);
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "With Issuer", Keywords = "JWT"), Category = "JWT")//iss
-	void withIssuer(FString issuer);
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "With Subject", Keywords = "JWT"), Category = "JWT")//sub
-	void withSubject(FString subject);
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "With Audience", Keywords = "JWT"), Category = "JWT")//aud
-	void withAudience(FString audience);
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Set Algorithm", Keywords = "JWT"), Category = "JWT") //alg
+	void SetAlgorithm(const FString& Key, EAlgorithm algorithm);
+	
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "With Issuer", Keywords = "JWT"), Category = "JWT") //iss
+	void WithIssuer(const FString& Issuer);
+	
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "With Subject", Keywords = "JWT"), Category = "JWT") //sub
+	void WithSubject(const FString& Subject);
+	
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "With Audience", Keywords = "JWT"), Category = "JWT") //aud
+	void WithAudience(const FString& Audience);
+	
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "With Leeway", Keywords = "JWT"), Category = "JWT")
-	void setLeeway(int32 leeway);
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "With ID", Keywords = "JWT"), Category = "JWT")//jti
-	void withID(FString ID);
+	void SetLeeway(int32 Leeway);
+	
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "With ID", Keywords = "JWT"), Category = "JWT") //jti
+	void WithID(const FString& ID);
+	
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "With Custom Claim", Keywords = "JWT"), Category = "JWT")
-	void withCustomClaim(FString Name,FString Value);
+	void WithCustomClaim(const FString& Name, const FString& Value);
+	
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Verify JWT", Keywords = "JWT"), Category = "JWT")
-	bool verifyJWT(FString JWT);
+	bool VerifyJWT(const FString& Input);
 private:
-    jwt::verifier<jwt::default_clock,jwt::picojson_traits> verifier=jwt::verify();
+    jwt::verifier<jwt::default_clock,jwt::picojson_traits> Verifier = jwt::verify();
 };
