@@ -9,22 +9,25 @@ void UJWTGenerator::GenerateToken(const FString& Key, EAlgorithm Algorithm, bool
 		jwtGeneratorTemp.set_issued_at(std::chrono::system_clock::now());
 	}
 	
-	switch (Algorithm) {
-		case EAlgorithm::hs256: JWT = FString(UTF8_TO_TCHAR(jwtGeneratorTemp.sign(jwt::algorithm::hs256{ TCHAR_TO_ANSI(*Key) }).c_str())); break;
-		case EAlgorithm::hs384: JWT = FString(UTF8_TO_TCHAR(jwtGeneratorTemp.sign(jwt::algorithm::hs384{ TCHAR_TO_ANSI(*Key) }).c_str())); break;
-		case EAlgorithm::hs512: JWT = FString(UTF8_TO_TCHAR(jwtGeneratorTemp.sign(jwt::algorithm::hs512{ TCHAR_TO_ANSI(*Key) }).c_str())); break;
-		case EAlgorithm::rs256: JWT = FString(jwtGeneratorTemp.sign(jwt::algorithm::rs256("", TCHAR_TO_ANSI(*Key), "", "")).c_str()); break;
-		case EAlgorithm::rs384: JWT = FString(jwtGeneratorTemp.sign(jwt::algorithm::rs384("", TCHAR_TO_ANSI(*Key), "", "")).c_str()); break;
-		case EAlgorithm::rs512: JWT = FString(jwtGeneratorTemp.sign(jwt::algorithm::rs512("", TCHAR_TO_ANSI(*Key), "", "")).c_str()); break;
-		/*case Algorithm::ed25519:JWT = FString(UTF8_TO_TCHAR(jwtGeneratorTemp.sign(jwt::algorithm::ed25519{ TCHAR_TO_ANSI(*key) }).c_str())); break;
-		case Algorithm::ed448:JWT = FString(UTF8_TO_TCHAR(jwtGeneratorTemp.sign(jwt::algorithm::ed448{ TCHAR_TO_ANSI(*key) }).c_str())); break;
-		case Algorithm::es256:JWT = FString(UTF8_TO_TCHAR(jwtGeneratorTemp.sign(jwt::algorithm::es256{ TCHAR_TO_ANSI(*key) }).c_str())); break;
-		case Algorithm::es384:JWT = FString(UTF8_TO_TCHAR(jwtGeneratorTemp.sign(jwt::algorithm::es384{ TCHAR_TO_ANSI(*key) }).c_str())); break;
-		case Algorithm::es512:JWT = FString(UTF8_TO_TCHAR(jwtGeneratorTemp.sign(jwt::algorithm::es512{ TCHAR_TO_ANSI(*key) }).c_str())); break;
-		case Algorithm::ps256:JWT = FString(UTF8_TO_TCHAR(jwtGeneratorTemp.sign(jwt::algorithm::ps256{ TCHAR_TO_ANSI(*key) }).c_str())); break;
-		case Algorithm::ps384:JWT = FString(UTF8_TO_TCHAR(jwtGeneratorTemp.sign(jwt::algorithm::ps384{ TCHAR_TO_ANSI(*key) }).c_str())); break;
-		case Algorithm::ps512:JWT = FString(UTF8_TO_TCHAR(jwtGeneratorTemp.sign(jwt::algorithm::ps512{ TCHAR_TO_ANSI(*key) }).c_str())); break; */
-	}
+	try
+	{
+		switch (Algorithm) {
+			case EAlgorithm::hs256: JWT = FString(UTF8_TO_TCHAR(jwtGeneratorTemp.sign(jwt::algorithm::hs256{ TCHAR_TO_ANSI(*Key) }).c_str())); break;
+			case EAlgorithm::hs384: JWT = FString(UTF8_TO_TCHAR(jwtGeneratorTemp.sign(jwt::algorithm::hs384{ TCHAR_TO_ANSI(*Key) }).c_str())); break;
+			case EAlgorithm::hs512: JWT = FString(UTF8_TO_TCHAR(jwtGeneratorTemp.sign(jwt::algorithm::hs512{ TCHAR_TO_ANSI(*Key) }).c_str())); break;
+			case EAlgorithm::rs256: JWT = FString(jwtGeneratorTemp.sign(jwt::algorithm::rs256("", TCHAR_TO_ANSI(*Key), "", "")).c_str()); break;
+			case EAlgorithm::rs384: JWT = FString(jwtGeneratorTemp.sign(jwt::algorithm::rs384("", TCHAR_TO_ANSI(*Key), "", "")).c_str()); break;
+			case EAlgorithm::rs512: JWT = FString(jwtGeneratorTemp.sign(jwt::algorithm::rs512("", TCHAR_TO_ANSI(*Key), "", "")).c_str()); break;
+			/*case Algorithm::ed25519:JWT = FString(UTF8_TO_TCHAR(jwtGeneratorTemp.sign(jwt::algorithm::ed25519{ TCHAR_TO_ANSI(*key) }).c_str())); break;
+			case Algorithm::ed448:JWT = FString(UTF8_TO_TCHAR(jwtGeneratorTemp.sign(jwt::algorithm::ed448{ TCHAR_TO_ANSI(*key) }).c_str())); break;
+			case Algorithm::es256:JWT = FString(UTF8_TO_TCHAR(jwtGeneratorTemp.sign(jwt::algorithm::es256{ TCHAR_TO_ANSI(*key) }).c_str())); break;
+			case Algorithm::es384:JWT = FString(UTF8_TO_TCHAR(jwtGeneratorTemp.sign(jwt::algorithm::es384{ TCHAR_TO_ANSI(*key) }).c_str())); break;
+			case Algorithm::es512:JWT = FString(UTF8_TO_TCHAR(jwtGeneratorTemp.sign(jwt::algorithm::es512{ TCHAR_TO_ANSI(*key) }).c_str())); break;
+			case Algorithm::ps256:JWT = FString(UTF8_TO_TCHAR(jwtGeneratorTemp.sign(jwt::algorithm::ps256{ TCHAR_TO_ANSI(*key) }).c_str())); break;
+			case Algorithm::ps384:JWT = FString(UTF8_TO_TCHAR(jwtGeneratorTemp.sign(jwt::algorithm::ps384{ TCHAR_TO_ANSI(*key) }).c_str())); break;
+			case Algorithm::ps512:JWT = FString(UTF8_TO_TCHAR(jwtGeneratorTemp.sign(jwt::algorithm::ps512{ TCHAR_TO_ANSI(*key) }).c_str())); break; */
+		}
+	} catch(...) {}
 }
 
 void UJWTGenerator::SetType(const FString& Type) {
