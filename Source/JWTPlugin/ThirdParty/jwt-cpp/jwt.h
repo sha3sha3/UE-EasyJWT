@@ -320,18 +320,14 @@ namespace jwt {
 		inline std::error_code make_error_code(token_verification_error e) {
 			return {static_cast<int>(e), token_verification_error_category()};
 		}
+                 inline void throw_if_error(std::error_code ec) {
 
-		inline bool throw_if_error(std::error_code ec) {
-			if (ec) {
-				return false;
 				if (ec.category() == rsa_error_category()) throw rsa_exception(ec);
 				if (ec.category() == ecdsa_error_category()) throw ecdsa_exception(ec);
 				if (ec.category() == signature_verification_error_category())
 					throw signature_verification_exception(ec);
 				if (ec.category() == signature_generation_error_category()) throw signature_generation_exception(ec);
 				if (ec.category() == token_verification_error_category()) throw token_verification_exception(ec);
-			}
-			return true;
 		}
 	} // namespace error
 
