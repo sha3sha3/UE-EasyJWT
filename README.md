@@ -46,6 +46,9 @@ JWT Generator Has a lot of methods to add claims, time (iat,nbf,exp), and header
  - HS256
  - HS348
  - HS512
+ - RS256
+ - RS384
+ - RS512
 
 More to come soon!!
 
