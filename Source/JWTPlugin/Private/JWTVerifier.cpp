@@ -25,7 +25,7 @@ void UJWTVerifier::SetAlgorithm(const FString& Key, EAlgorithm Algorithm) {
 
 bool UJWTVerifier::VerifyJWT(const FString& Input) {
 	try {
-		 Verifier.verify(jwt::decode(TCHAR_TO_ANSI(*Input)));
+		 Verifier.jwtVerify(jwt::decode(TCHAR_TO_ANSI(*Input)));
 	}
 	catch (const std::exception& ec) {
 		UE_LOG(LogTemp, Error, TEXT("Error:  %d"), *ec.what());
