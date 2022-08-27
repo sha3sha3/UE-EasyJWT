@@ -10,7 +10,7 @@
 
 
 UCLASS()
-class UJWTPluginBPLibrary : public UBlueprintFunctionLibrary
+class JWTPLUGIN_API UJWTPluginBPLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_UCLASS_BODY()
 
