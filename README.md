@@ -52,4 +52,8 @@ JWT Generator Has a lot of methods to add claims, time (iat,nbf,exp), and header
 
 More to come soon!!
 
+## Find it helpful?
+
+Give us a ⭐️!
+
 
