@@ -1,4 +1,5 @@
-# If you want to support this project, you can buy a license on [Unreal Marketplace](https://www.unrealengine.com/marketplace/en-US/product/easy-jwt). 
+# Support this project by buying a license on [Unreal Marketplace](https://www.unrealengine.com/marketplace/en-US/product/easy-jwt). 
+
 # Supported Platforms
 
 ![Windows](https://drive.google.com/uc?export=view&id=1k4dinqYcmrCpQ6b08JMJujBICzzTJOeo) ![Linux](https://drive.google.com/uc?export=view&id=1QwyMFHBC9qPJatMq7eUqh7m15mOkR1Hn) 
