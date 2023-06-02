@@ -31,8 +31,8 @@ bEnableExceptions = true;//we are usingg exceptions
  PrivateDependencyModuleNames.AddRange( new string[]
 {
     "JwtCpp",
-	"JwtVerifier",
-	"JwtGenerator"
+    "JwtVerifier",
+    "JwtGenerator"
 });
 ```
 # JWT Generator Basic Usage
