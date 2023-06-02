@@ -1,7 +1,7 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "1.0",
+	"VersionName": "2023.06.02",
 	"FriendlyName": "EasyJWT",
 	"Description": "Simple and easy to use sub-system to creat, verify & extract claims from JSON WEB TOKENS",
 	"Category": "Other",
