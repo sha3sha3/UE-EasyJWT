@@ -3,20 +3,50 @@
 	"Version": 1,
 	"VersionName": "1.0",
 	"FriendlyName": "JWTPlugin",
-	"Description": "Simple and easy to use BP library to creat, verify & extract claims from JSON WEB TOKENS",
+	"Description": "Simple and easy to use sub-system to creat, verify & extract claims from JSON WEB TOKENS",
 	"Category": "Other",
-	"CreatedBy": "FFE (ForeFront Electronics)",
+	"CreatedBy": "Dynamic Servers Systems",
 	"CreatedByURL": "https://www.youtube.com/channel/UCFqsG_gNXKbujdm2XB90wOQ",
 	"DocsURL": "https://github.com/sha3sha3/JWTPlugin/blob/master/README.md",
 	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/5a7b13f17ce04fc3b4a571a8faf58b4a",
-	"SupportURL": "https://discord.com/invite/MtGpAdM",
+	"SupportURL": "https://discord.com/invite/kFQ2bVcpPf",
 	"CanContainContent": true,
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
 	"Installed": true,
 	"Modules": [
 		{
-			"Name": "JWTPlugin",
+			"Name": "EasyJwt",
+			"Type": "Runtime",
+			"LoadingPhase": "PreLoadingScreen",
+			"PlatformAllowList": [
+				"Win64",
+				"Linux",
+				"LinuxArm64"
+			],
+			"WhitelistPlatforms": [
+				"Win64",
+				"Linux",
+				"LinuxAArch64"
+			]
+		},
+		{
+			"Name": "JwtVerifier",
+			"Type": "Runtime",
+			"LoadingPhase": "PreLoadingScreen",
+			"PlatformAllowList": [
+				"Win64",
+				"Linux",
+				"LinuxArm64"
+			],
+			"WhitelistPlatforms": [
+				"Win64",
+				"Linux",
+				"LinuxAArch64"
+			]
+		},
+		{
+			"Name": "JwtGenerator",
 			"Type": "Runtime",
 			"LoadingPhase": "PreLoadingScreen",
 			"PlatformAllowList": [

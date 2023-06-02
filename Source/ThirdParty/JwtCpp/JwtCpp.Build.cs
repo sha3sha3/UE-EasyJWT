@@ -1,18 +1,19 @@
-//ForeFront electronics 2021
+// Copyright (c) 2021-2023 MrShaaban, Mohamad Shaaban, https://github.com/sha3sha3/UE-EasyJWT.
 
 using UnrealBuildTool;
 using System.IO;
 
-public class JWTPlugin : ModuleRules
+public class JwtCpp : ModuleRules
 {
-	public JWTPlugin(ReadOnlyTargetRules Target) : base(Target)
+	public JwtCpp(ReadOnlyTargetRules Target) : base(Target)
 	{
-		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
-		
-		PublicIncludePaths.AddRange(
+        Type = ModuleType.External;
+        CppStandard = CppStandardVersion.Cpp17;
+        PublicSystemIncludePaths.Add(Path.Combine(ModuleDirectory, "include"));
+        PublicIncludePaths.AddRange(
 			new string[] {
 				// ... add public include paths required here ...
-				Path.Combine(Path.Combine(ModuleDirectory,"ThirdParty"),"jwt-cpp")
+				Path.Combine(Path.Combine(ModuleDirectory, "include"))
 			}
 			);
 				
@@ -28,7 +29,8 @@ public class JWTPlugin : ModuleRules
 		PublicDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"Core"
+				"Core",
+                "OpenSSL"
 				
 				// ... add other public dependencies that you statically link with here ...
 			}
@@ -38,11 +40,7 @@ public class JWTPlugin : ModuleRules
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"CoreUObject",
-				"Engine",
-				"Slate",
-				"SlateCore",
-				"OpenSSL"
+				
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);
