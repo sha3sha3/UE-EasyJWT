@@ -104,27 +104,6 @@ void FJwtGeneratorModule::SetID(const FString& ID) {
 	JwtGenerator = JwtGenerator.set_id(TCHAR_TO_ANSI(*ID));
 }
 
-void FJwtGeneratorModule::AddClaim(const FString& Name, const FString& Value) {
-	JwtGenerator = JwtGenerator.set_payload_claim(TCHAR_TO_ANSI(*Name), jwt::claim(std::string(TCHAR_TO_ANSI(*Value))));
-}
-
-void FJwtGeneratorModule::AddClaims(TMap<FString, FString> Claims) {
-	for (const TPair<FString, FString>& pair : Claims)
-	{
-		FJwtGeneratorModule::Get().AddClaim(pair.Key, pair.Value);
-	}
-}
-
-void FJwtGeneratorModule::AddHeaderClaim(const FString& Name, const FString& Value) {
-	JwtGenerator = JwtGenerator.set_header_claim(TCHAR_TO_ANSI(*Name), jwt::claim(std::string(TCHAR_TO_ANSI(*Value))));
-}
-
-void FJwtGeneratorModule::AddHeaderClaims(TMap<FString, FString> Claims) {
-	for (const TPair<FString, FString>& pair : Claims)
-	{
-		FJwtGeneratorModule::Get().AddHeaderClaim(pair.Key, pair.Value);
-	}
-}
 
 #undef LOCTEXT_NAMESPACE
 	

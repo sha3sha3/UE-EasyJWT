@@ -64,7 +64,7 @@ bool UEasyJwtSubsystem::VerifyJWT(const FString& Input)
 TMap<FString, FString> UEasyJwtSubsystem::GetClaims(const FString& JWTToken)
 {
 	if (EasyJwt->GetVerifier())
-		EasyJwt->GetVerifier()->GetClaims(JWTToken);
+		return	EasyJwt->GetVerifier()->GetClaims(JWTToken);
 
 	return TMap<FString, FString>();
 }
@@ -109,30 +109,6 @@ void UEasyJwtSubsystem::SetID(const FString& ID)
 {
 	if (EasyJwt->GetGenerator())
 		EasyJwt->GetGenerator()->SetID(ID);
-}
-
-void UEasyJwtSubsystem::AddClaim(const FString& Name, const FString& Value)
-{
-	if (EasyJwt->GetGenerator())
-		EasyJwt->GetGenerator()->AddClaim(Name, Value);
-}
-
-void UEasyJwtSubsystem::AddClaims(TMap<FString, FString> Claims)
-{
-	if (EasyJwt->GetGenerator())
-		EasyJwt->GetGenerator()->AddClaims(Claims);
-}
-
-void UEasyJwtSubsystem::AddHeaderClaim(const FString& Name, const FString& Value)
-{
-	if (EasyJwt->GetGenerator())
-		EasyJwt->GetGenerator()->AddHeaderClaim(Name, Value);
-}
-
-void UEasyJwtSubsystem::AddHeaderClaims(TMap<FString, FString> Claims)
-{
-	if (EasyJwt->GetGenerator())
-		EasyJwt->GetGenerator()->AddHeaderClaims(Claims);
 }
 
 FString UEasyJwtSubsystem::GenerateJwtToken(bool IATClaim, TMap<FString, FString> Claims, TMap<FString, FString> HeaderClaims, int NotBeforeSec, int ExpireAfterSec)

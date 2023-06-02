@@ -2,7 +2,7 @@
 	"FileVersion": 3,
 	"Version": 1,
 	"VersionName": "1.0",
-	"FriendlyName": "JWTPlugin",
+	"FriendlyName": "EasyJWT",
 	"Description": "Simple and easy to use sub-system to creat, verify & extract claims from JSON WEB TOKENS",
 	"Category": "Other",
 	"CreatedBy": "Dynamic Servers Systems",

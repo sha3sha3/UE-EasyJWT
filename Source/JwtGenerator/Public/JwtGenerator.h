@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include "UObject/NoExportTypes.h"
 #include "GeneratorAlgorithm.h"
 #include "CoreMinimal.h"
 THIRD_PARTY_INCLUDES_START
@@ -33,14 +32,6 @@ public:
 	void SetAudience(const FString& Audience);
 
 	void SetID(const FString& ID);
-
-	void AddClaim(const FString& Name, const FString& Value);
-
-	void AddClaims(TMap<FString, FString> Claims);
-
-	void AddHeaderClaim(const FString& Name, const FString& Value);
-
-	void AddHeaderClaims(TMap<FString, FString> Claims);
 
 	FString GenerateJwtToken(bool IATClaim, int NotBeforeSec, int ExpireAfterSec, TMap<FString, FString> Claims, TMap<FString, FString> HeaderClaims);
 
