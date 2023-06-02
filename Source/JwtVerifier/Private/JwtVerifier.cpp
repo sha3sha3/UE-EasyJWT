@@ -32,7 +32,7 @@ FJwtVerifierModule& FJwtVerifierModule::Get()
 	return *JwtVerifierSingleton;
 }
 
-void FJwtVerifierModule::SetAlgorithm(const FString& Key, EVerifierAlgorithm Algorithm) {
+void FJwtVerifierModule::InitVerifier(const FString& Key, EVerifierAlgorithm Algorithm) {
 	try
 	{
 		switch (Algorithm) {

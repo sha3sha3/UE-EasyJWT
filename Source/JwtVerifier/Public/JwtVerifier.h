@@ -23,7 +23,7 @@ public:
 
 public:
 
-	void SetAlgorithm(const FString& Key, EVerifierAlgorithm algorithm);
+	void InitVerifier(const FString& Key, EVerifierAlgorithm algorithm);
 
 	void WithIssuer(const FString& Issuer);
 

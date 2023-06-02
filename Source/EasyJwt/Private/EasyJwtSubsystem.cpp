@@ -13,7 +13,7 @@ void UEasyJwtSubsystem::Deinitialize()
 void UEasyJwtSubsystem::InitVerifier(const FString& Key, EVerifierAlgorithm Algorithm)
 {
 	if (EasyJwt->GetVerifier())
-		EasyJwt->GetVerifier()->SetAlgorithm(Key, Algorithm);
+		EasyJwt->GetVerifier()->InitVerifier(Key, Algorithm);
 }
 
 
