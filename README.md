@@ -26,10 +26,11 @@ EasyJwt is a JSON web tokens engine sub-system for Unreal Engine 4/5, that provi
 Link the plugin modules to your project through `<YourModule>.build.cs`:
 
 ```cs
-bEnableExceptions = true;//we are usingg exceptions
+bEnableExceptions = true;//we are using exceptions
 
  PrivateDependencyModuleNames.AddRange( new string[]
 {
+    "EasyJwt",
     "JwtCpp",
     "JwtVerifier",
     "JwtGenerator"
@@ -43,7 +44,7 @@ Initialize the Generator
 ```cpp
 #include "EasyJwtSubsystem.h"
 
-TSharedPtr<FEasyJwtModule> EasyJwt = GEngine->GetEngineSubsystem<UEasyJwtSubsystem>()->Get();
+TSharedPtr<FEasyJwtModule> EasyJwt = GEngine->GetEngineSubsystem<UEasyJwtSubsystem>()->GetEasyJwt();
 EasyJwt->GetGenerator()->InitGenerator(`<SIGNING_KEY>`, EGeneratorAlgorithm::HS256);
 ```
 
@@ -52,7 +53,7 @@ Generate Signed Token Basic Example:
 ```cpp
 #include "EasyJwtSubsystem.h"
 
-TSharedPtr<FEasyJwtModule> EasyJwt = GEngine->GetEngineSubsystem<UEasyJwtSubsystem>()->Get();
+TSharedPtr<FEasyJwtModule> EasyJwt = GEngine->GetEngineSubsystem<UEasyJwtSubsystem>()->GetEasyJwt();
 
 TMap<FString, FString> Claims =
 {
@@ -92,7 +93,7 @@ Initialize the Verifier
 ```cpp
 #include "EasyJwtSubsystem.h"
 
-TSharedPtr<FEasyJwtModule> EasyJwt = GEngine->GetEngineSubsystem<UEasyJwtSubsystem>()->Get();
+TSharedPtr<FEasyJwtModule> EasyJwt = GEngine->GetEngineSubsystem<UEasyJwtSubsystem>()->GetEasyJwt();
 
 EasyJwt->GetVerifier()->InitVerifier(`<SIGNING_KEY>`, EVerifierAlgorithm::HS256);
 ```
@@ -102,7 +103,7 @@ Verify a Token
 ```cpp
 #include "EasyJwtSubsystem.h"
 
-TSharedPtr<FEasyJwtModule> EasyJwt = GEngine->GetEngineSubsystem<UEasyJwtSubsystem>()->Get();
+TSharedPtr<FEasyJwtModule> EasyJwt = GEngine->GetEngineSubsystem<UEasyJwtSubsystem>()->GetEasyJwt();
 
 bool bValid = EasyJwt->GetVerifier()->VerifyJWT(`<TOKEN_TO_VERIFY>`);
 ```
@@ -112,7 +113,7 @@ Get Claims From JWT
 ```cpp
 #include "EasyJwtSubsystem.h"
 
-TSharedPtr<FEasyJwtModule> EasyJwt = GEngine->GetEngineSubsystem<UEasyJwtSubsystem>()->Get();
+TSharedPtr<FEasyJwtModule> EasyJwt = GEngine->GetEngineSubsystem<UEasyJwtSubsystem>()->GetEasyJwt();
 
 TMap<FString, FString> Claims = EasyJwt->GetVerifier()->GetClaims(`<JWT>`);
 ```
