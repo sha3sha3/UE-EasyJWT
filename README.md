@@ -1,4 +1,4 @@
-# Support this project by buying a license on [Unreal Marketplace](https://www.unrealengine.com/marketplace/en-US/product/easy-jwt). 
+# This project is no longer maintained on GitHub, but you may obtain the latest maintained version on [Unreal Marketplace](https://www.unrealengine.com/marketplace/en-US/product/easy-jwt). 
 
 <h1 align="center">
   <br>
