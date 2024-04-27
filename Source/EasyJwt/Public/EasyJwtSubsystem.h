@@ -53,7 +53,7 @@ public:
 		void SetAudience(const FString& Audience);
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Set ID", Keywords = "JWT"), Category = "EasyJWT|Generator")//jti
 		void SetID(const FString& ID);
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Generate Signed JWT", Keywords = "JWT"), Category = "JWT")
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Generate Signed JWT", Keywords = "JWT"), Category = "EasyJWT|Generator")
 		FString GenerateJwtToken(bool IATClaim , TMap<FString, FString> Claims , TMap<FString, FString> HeaderClaims, int NotBeforeSec = 0, int ExpireAfterSec = 900);
 	
 	TSharedPtr<FEasyJwtModule> GetEasyJwt();
