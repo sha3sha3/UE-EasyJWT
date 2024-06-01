@@ -145,6 +145,12 @@ Blueprint API
  - RS256
  - RS384
  - RS512
+ - ES256 [Unreal Marketplace version only](https://www.unrealengine.com/marketplace/en-US/product/easy-jwt)
+ - ES384 [Unreal Marketplace version only](https://www.unrealengine.com/marketplace/en-US/product/easy-jwt)
+ - ES512 [Unreal Marketplace version only](https://www.unrealengine.com/marketplace/en-US/product/easy-jwt)
+ - PS256 [Unreal Marketplace version only](https://www.unrealengine.com/marketplace/en-US/product/easy-jwt)
+ - PS384 [Unreal Marketplace version only](https://www.unrealengine.com/marketplace/en-US/product/easy-jwt)
+ - PS512 [Unreal Marketplace version only](https://www.unrealengine.com/marketplace/en-US/product/easy-jwt)
 
 More to come soon!!
 
